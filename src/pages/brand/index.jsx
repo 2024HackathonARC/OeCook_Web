@@ -31,6 +31,7 @@ const Brand = () => {
         {companies.map((company, index) => (
           <Company
             key={index}
+            id={company.id}
             url={company.image}
             title={company.name}
             category={company.category}

@@ -5,6 +5,7 @@ import Recipe from "./pages/recipe";
 import MenuDetail from "./pages/menuDetail";
 import RecipeDetail from "./pages/recipeDetail";
 import Map from "./pages/map";
+import BrandDetail from "./pages/brandDetail";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/recipe" element={<Recipe />} />
       <Route path="/menu-detail/:id" element={<MenuDetail />} />
       <Route path="/recipe-detail/:id" element={<RecipeDetail />} />
+      <Route path="/brand-detail/:id" element={<BrandDetail />} />
       <Route path="/map" element={<Map />} />
     </Routes>
   );

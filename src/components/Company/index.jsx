@@ -1,10 +1,16 @@
 import React from "react";
 import * as _ from "./style";
 import RightArrow from "../../assets/RightArrow";
+import { useNavigate } from "react-router-dom";
 
-const Company = ({ url, title, desc, category, sale }) => {
+const Company = ({ id, url, title, desc, category, sale }) => {
+  const navigate = useNavigate();
   return (
-    <_.Layout>
+    <_.Layout
+      onClick={() => {
+        navigate(`/brand-detail/${id}`);
+      }}
+    >
       <_.Image src={url} alt="메뉴 이미지" />
       <_.Content>
         <_.Left>
