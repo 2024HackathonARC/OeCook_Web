@@ -14,11 +14,12 @@ export const Header = styled.header`
 `;
 
 export const Content = styled.div`
-  padding: 4px 20px;
+  padding: 4px 0;
 `;
 
 export const Main_Slide = styled.div`
   position: relative;
+  padding: 0 20px;
 `;
 
 export const Main_SlideImage = styled.img`
@@ -63,13 +64,14 @@ export const Explain = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-  padding-top: 20px;
+  padding: 20px 20px 0;
 `;
 
 export const Taps = styled.div`
   display: flex;
   gap: 8px;
   margin-top: 20px;
+  padding: 0 20px;
 `;
 
 export const Tap = styled.div`
@@ -84,10 +86,9 @@ export const List = styled.div`
   width: 100%;
   background: #fff;
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
-  padding-top: 34px;
   display: flex;
   flex-direction: column;
   gap: 20px;
   overflow-y: scroll;
-  margin-bottom: 90px;
+  padding: 34px 20px 90px;
 `;
