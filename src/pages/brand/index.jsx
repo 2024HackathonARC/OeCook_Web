@@ -2,7 +2,6 @@ import React from "react";
 import * as _ from "./style";
 import IceCream from "../../assets/IceCream.webp";
 import Header from "../../components/Header";
-import MenuBar from "../../components/MenuBar";
 import Company from "../../components/Company";
 
 const Brand = () => {
@@ -76,7 +75,6 @@ const Brand = () => {
           sale="떡"
         />
       </_.List>
-      <MenuBar />
     </_.Layout>
   );
 };

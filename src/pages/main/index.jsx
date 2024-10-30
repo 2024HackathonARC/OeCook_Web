@@ -8,7 +8,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
 import RecommendedMenu from "../../components/RecommendedMenu";
-import MenuBar from "../../components/MenuBar";
 import Header from "../../components/Header";
 
 const Main = () => {
@@ -119,7 +118,6 @@ const Main = () => {
           />
         </_.List>
       </_.Content>
-      <MenuBar />
     </_.Layout>
   );
 };
