@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import * as _ from "./style";
 import LeftArrow from "../../assets/LeftArrow";
 import { Product_Detail_Read } from "../../lib/apis/Product";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { formatPrice } from "../../lib/utils/formatPrice";
 
 const MenuDetail = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const [info, setInfo] = useState();
   const allergy = info?.allergy.split(",");
@@ -60,7 +61,14 @@ const MenuDetail = () => {
         </_.Alert>
       </_.AlertList>
       <_.Buttons>
-        <_.Button isRed={false}>가장 가까운 매장</_.Button>
+        <_.Button
+          onClick={() => {
+            navigate(`/map`, { state: { location: info?.companyName } });
+          }}
+          isRed={false}
+        >
+          가장 가까운 매장
+        </_.Button>
         <_.Button isRed={true}>구매하러 가기!</_.Button>
       </_.Buttons>
     </_.Layout>

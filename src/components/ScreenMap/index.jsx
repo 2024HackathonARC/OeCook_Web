@@ -13,7 +13,7 @@ const ScreenMap = ({ keyword, onMount }) => {
         const mapContainer = document.getElementById("map");
         const mapOption = {
           center: new kakao.maps.LatLng(36.3623, 127.3575),
-          level: 1,
+          level: 5,
         };
 
         const map = new kakao.maps.Map(mapContainer, mapOption);
@@ -24,6 +24,10 @@ const ScreenMap = ({ keyword, onMount }) => {
           (data, status) => {
             if (status === kakao.maps.services.Status.OK) {
               const results = data.slice(0, 1);
+              const firstStorePosition = new kakao.maps.LatLng(
+                results[0].y,
+                results[0].x
+              );
 
               results.forEach((store) => {
                 const markerPosition = new kakao.maps.LatLng(store.y, store.x);
@@ -43,11 +47,36 @@ const ScreenMap = ({ keyword, onMount }) => {
                 });
               });
 
-              const firstStorePosition = new kakao.maps.LatLng(
-                results[0].y,
-                results[0].x
+              const currentLocation = new kakao.maps.LatLng(36.3623, 127.3575); // 현재 위치 (예시)
+              const linePath = [currentLocation, firstStorePosition];
+              const polyline = new kakao.maps.Polyline({
+                path: linePath,
+                strokeWeight: 5,
+                strokeColor: "#FF0000",
+                strokeOpacity: 0.7,
+                strokeStyle: "solid",
+              });
+              polyline.setMap(map); // 지도에 선 그리기
+
+              const centerLat =
+                (currentLocation.getLat() + firstStorePosition.getLat()) / 2;
+              const centerLng =
+                (currentLocation.getLng() + firstStorePosition.getLng()) / 2;
+              const centerPosition = new kakao.maps.LatLng(
+                centerLat,
+                centerLng
               );
-              map.setCenter(firstStorePosition);
+              map.setCenter(centerPosition); // 중심을 두 위치의 중간으로 설정
+
+              const currentMarker = new kakao.maps.Marker({
+                position: currentLocation,
+              });
+              currentMarker.setMap(map);
+
+              const currentInfoWindow = new kakao.maps.InfoWindow({
+                content: '<div style="padding:5px;">현위치</div>',
+              });
+              currentInfoWindow.open(map, currentMarker); // 현재 위치에 정보창 열기
             }
           },
           {
