@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import * as _ from "./style";
 import LeftArrow from "../../assets/LeftArrow";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { formatPrice } from "../../lib/utils/formatPrice";
 import { Product_Detail_Read } from "../../lib/apis/Product";
 
 const RecipeDetail = () => {
+  const navigate = useNavigate();
   const params = useParams();
   const [info, setInfo] = useState();
   const allergy = info?.allergy.split(",");
@@ -30,7 +31,14 @@ const RecipeDetail = () => {
   return (
     <_.Layout>
       <_.Header>
-        <LeftArrow />
+        <div
+          onClick={() => {
+            navigate(-1);
+          }}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <LeftArrow />
+        </div>
       </_.Header>
       <_.Image src={info?.image} />
       <_.Top>

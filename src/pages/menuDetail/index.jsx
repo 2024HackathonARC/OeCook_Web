@@ -26,7 +26,14 @@ const MenuDetail = () => {
   return (
     <_.Layout>
       <_.Header>
-        <LeftArrow />
+        <div
+          onClick={() => {
+            navigate(-1);
+          }}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          <LeftArrow />
+        </div>
       </_.Header>
       <_.Image src={info?.image} />
       <_.Top>

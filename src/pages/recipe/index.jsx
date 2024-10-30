@@ -60,6 +60,7 @@ const Recipe = () => {
           onClick={() => {
             navigate(-1);
           }}
+          style={{ display: "flex", alignItems: "center" }}
         >
           <LeftArrow />
         </div>
