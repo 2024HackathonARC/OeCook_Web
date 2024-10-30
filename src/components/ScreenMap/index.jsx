@@ -59,7 +59,7 @@ const ScreenMap = ({ keyword, onMount }) => {
     };
 
     loadKakaoMap();
-  }, [keyword]);
+  }, [keyword, onMount]);
   return <div id="map" style={{ width: "100vw", height: "400px" }}></div>;
 };
 
