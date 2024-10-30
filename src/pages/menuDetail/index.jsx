@@ -85,7 +85,14 @@ const MenuDetail = () => {
         >
           가장 가까운 매장
         </_.Button>
-        <_.Button isRed={true}>구매하러 가기!</_.Button>
+        <_.Button
+          onClick={() => {
+            window.location.href = info?.link;
+          }}
+          isRed={true}
+        >
+          구매하러 가기!
+        </_.Button>
       </_.Buttons>
     </_.Layout>
   );

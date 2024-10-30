@@ -3,7 +3,15 @@ import * as _ from "./style";
 import { useNavigate } from "react-router-dom";
 import RightArrow from "../../assets/RightArrow";
 
-const RecommendedMenu = ({ isProduct, id, url, title, price, brand }) => {
+const RecommendedMenu = ({
+  isProduct,
+  id,
+  url,
+  title,
+  price,
+  brand,
+  isEnglish,
+}) => {
   const navigate = useNavigate();
   return (
     <_.Layout>
@@ -24,7 +32,7 @@ const RecommendedMenu = ({ isProduct, id, url, title, price, brand }) => {
               }
             }}
           >
-            자세히 보기 <RightArrow />
+            {isEnglish ? "Learn more" : "자세히 보기"} <RightArrow />
           </_.Detail>
         </_.Right>
       </_.Content>

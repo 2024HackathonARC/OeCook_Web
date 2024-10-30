@@ -134,6 +134,7 @@ const Main = () => {
                   price={formatPrice(product.price)}
                   brand={product.companyName}
                   isProduct={true}
+                  isEnglish={isEnglish}
                 />
               ))
             : recipeList?.map((product) => (
@@ -145,6 +146,7 @@ const Main = () => {
                   price={formatPrice(product.price)}
                   brand={product.companyName}
                   isProduct={false}
+                  isEnglish={isEnglish}
                 />
               ))}
         </_.List>
