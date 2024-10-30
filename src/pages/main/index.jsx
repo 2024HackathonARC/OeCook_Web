@@ -7,7 +7,7 @@ import IceCream from "../../assets/IceCream.webp";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
-import Menu from "../../components/Menu";
+import RecommendedMenu from "../../components/RecommendedMenu";
 import MenuBar from "../../components/MenuBar";
 import Header from "../../components/Header";
 
@@ -69,14 +69,54 @@ const Main = () => {
           </_.Tap>
         </_.Taps>
         <_.List>
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
-          <Menu url={Coffee} title="커피커피" price="3,478원" brand="빚은" />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
+          <RecommendedMenu
+            url={Coffee}
+            title="커피커피"
+            price="3,478원"
+            brand="빚은"
+          />
         </_.List>
       </_.Content>
       <MenuBar />

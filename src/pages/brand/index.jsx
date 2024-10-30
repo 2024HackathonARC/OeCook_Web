@@ -16,7 +16,7 @@ const Brand = () => {
         <_.Category>커피/음료</_.Category>
       </_.CategoryList>
       <_.Explain>
-        <_.Explain_Span>SPC</_.Explain_Span>와 관련된 회사
+        <_.Explain_Span>K-food</_.Explain_Span>와 관련된 음식 회사
       </_.Explain>
       <_.List>
         <Company

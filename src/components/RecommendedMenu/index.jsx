@@ -2,7 +2,7 @@ import React from "react";
 import * as _ from "./style";
 import RightArrow from "../../assets/RightArrow";
 
-const Menu = ({ url, title, price, brand }) => {
+const RecommendedMenu = ({ url, title, price, brand }) => {
   return (
     <_.Layout>
       <_.Image src={url} alt="메뉴 이미지" />
@@ -22,4 +22,4 @@ const Menu = ({ url, title, price, brand }) => {
   );
 };
 
-export default Menu;
+export default RecommendedMenu;
