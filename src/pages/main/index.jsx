@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import * as _ from "./style";
-import Logo from "../../assets/Logo";
-import SearchBar from "../../components/SearchBar";
 import CategoryBar from "../../components/CategoryBar";
 import Burger from "../../assets/Burger.webp";
 import Coffee from "../../assets/Coffee.webp";
@@ -11,6 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
 import Menu from "../../components/Menu";
 import MenuBar from "../../components/MenuBar";
+import Header from "../../components/Header";
 
 const Main = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -42,10 +41,7 @@ const Main = () => {
 
   return (
     <_.Layout>
-      <_.Header>
-        <Logo />
-        <SearchBar />
-      </_.Header>
+      <Header />
       <_.Content>
         <CategoryBar />
         <_.CustomCarousel>
