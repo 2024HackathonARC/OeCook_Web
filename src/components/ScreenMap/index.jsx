@@ -13,7 +13,7 @@ const ScreenMap = ({ keyword, onMount }) => {
         const mapContainer = document.getElementById("map");
         const mapOption = {
           center: new kakao.maps.LatLng(36.3623, 127.3575),
-          level: 3,
+          level: 1,
         };
 
         const map = new kakao.maps.Map(mapContainer, mapOption);
