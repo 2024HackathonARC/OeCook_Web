@@ -9,11 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
 import RecommendedMenu from "../../components/RecommendedMenu";
 import Header from "../../components/Header";
-import {
-  Product_Read,
-  Product_ReadByCategory,
-  Recipe_Read,
-} from "../../lib/apis/Product";
+import { Product_Read, Recipe_Read } from "../../lib/apis/Product";
 import { User_Read } from "../../lib/apis/User";
 import { formatPrice } from "../../lib/utils/formatPrice";
 
@@ -22,18 +18,13 @@ const Main = () => {
   const [selectedTab, setSelectedTab] = useState(1);
   const [productList, setProductList] = useState([]);
   const [recipeList, setRecipeList] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("");
   const [name, setName] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         if (selectedTab === 1) {
-          const response = selectedCategory
-            ? await Product_ReadByCategory(
-                selectedCategory === "베이커리" ? "빵" : selectedCategory
-              )
-            : await Product_Read();
+          const response = await Product_Read();
           setProductList(response);
         } else if (selectedTab === 2) {
           const response = await Recipe_Read();
@@ -51,14 +42,10 @@ const Main = () => {
       }
     };
     fetchProducts();
-  }, [selectedTab, selectedCategory]);
+  }, [selectedTab]);
 
   const handleTap = (index) => {
     setSelectedTab(index);
-  };
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
   };
 
   const imageData = [
@@ -85,10 +72,7 @@ const Main = () => {
     <_.Layout>
       <Header />
       <_.Content>
-        <CategoryBar
-          selectedCategory={selectedCategory}
-          onCategorySelect={handleCategorySelect}
-        />
+        <CategoryBar />
         <_.CustomCarousel>
           <Carousel
             showArrows={false}

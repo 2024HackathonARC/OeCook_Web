@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as _ from "./style";
 import LeftArrow from "../../assets/LeftArrow";
 import SaleMenu from "../../components/SaleMenu";
 import SpicyModal from "../../components/Modals/SpicyModal";
 import TempModal from "../../components/Modals/TempModal";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Product_ReadByCategory } from "../../lib/apis/Product";
+import { formatPrice } from "../../lib/utils/formatPrice";
 
 const Recipe = () => {
   const [selectedTab, setSelectedTab] = useState(1);
@@ -11,6 +14,9 @@ const Recipe = () => {
   const [isTempModalOpen, setIsTempModalOpen] = useState(false);
   const [spicyPreference, setSpicyPreference] = useState(null);
   const [tempPreference, setTempPreference] = useState(null);
+  const location = useLocation();
+  const category = location.state?.category;
+  const [productList, setProductList] = useState([]);
 
   const handleTap = (index) => {
     setSelectedTab(index);
@@ -26,11 +32,38 @@ const Recipe = () => {
     setIsSpicyModalOpen(false);
   };
 
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        if (selectedTab === 1) {
+          const response = await Product_ReadByCategory(
+            category === "베이커리" ? "빵" : category
+          );
+          setProductList(response);
+        } else if (selectedTab === 2) {
+          // const response = await Recipe_Read();
+          // setRecipeList(response);
+        }
+      } catch (error) {
+        console.error("에러:", error);
+      }
+    };
+    fetchProducts();
+  }, [category, selectedTab]);
+
   return (
     <_.Layout>
       <_.Header>
-        <LeftArrow />
-        <_.Header_Title>디저트</_.Header_Title>
+        <div
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          <LeftArrow />
+        </div>
+        <_.Header_Title>{category}</_.Header_Title>
       </_.Header>
       <_.CategoryList>
         <_.Category
@@ -55,10 +88,15 @@ const Recipe = () => {
         </_.Tap>
       </_.Taps>
       <_.List>
-        <SaleMenu />
-        <SaleMenu />
-        <SaleMenu />
-        <SaleMenu />
+        {productList.map((product, index) => (
+          <SaleMenu
+            key={index}
+            image={product.image}
+            title={product.menu}
+            price={formatPrice(product.price)}
+            company={product.companyName}
+          />
+        ))}
       </_.List>
       {isSpicyModalOpen && (
         <SpicyModal

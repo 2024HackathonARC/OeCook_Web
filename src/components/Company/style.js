@@ -26,6 +26,7 @@ export const Left = styled.div`
   display: flex;
   flex-direction: column;
   gap: 7px;
+  width: 65%;
 `;
 
 export const Title = styled.p`
@@ -80,4 +81,6 @@ export const Detail = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  display: flex;
+  align-items: center;
 `;
