@@ -9,7 +9,7 @@ import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
 import RecommendedMenu from "../../components/RecommendedMenu";
 import Header from "../../components/Header";
-import { Product_Read } from "../../lib/apis/Product";
+import { Product_Read, Recipe_Read } from "../../lib/apis/Product";
 import { User_Read } from "../../lib/apis/User";
 import { formatPrice } from "../../lib/utils/formatPrice";
 
@@ -17,13 +17,19 @@ const Main = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedTab, setSelectedTab] = useState(1);
   const [productList, setProductList] = useState([]);
+  const [recipeList, setRecipeList] = useState([]);
   const [name, setName] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await Product_Read();
-        setProductList(response);
+        if (selectedTab === 1) {
+          const response = await Product_Read();
+          setProductList(response);
+        } else if (selectedTab === 2) {
+          const response = await Recipe_Read();
+          setRecipeList(response);
+        }
       } catch (error) {
         console.error("에러:", error);
       }
@@ -36,7 +42,7 @@ const Main = () => {
       }
     };
     fetchProducts();
-  }, []);
+  }, [selectedTab]);
 
   const handleTap = (index) => {
     setSelectedTab(index);
@@ -92,16 +98,29 @@ const Main = () => {
           </_.Tap>
         </_.Taps>
         <_.List>
-          {productList.map((product) => (
-            <RecommendedMenu
-              key={product.id}
-              id={product.id}
-              url={product.image}
-              title={product.menu}
-              price={formatPrice(product.price)}
-              brand={product.companyName}
-            />
-          ))}
+          {selectedTab === 1
+            ? productList?.map((product) => (
+                <RecommendedMenu
+                  key={product.id}
+                  id={product.id}
+                  url={product.image}
+                  title={product.menu}
+                  price={formatPrice(product.price)}
+                  brand={product.companyName}
+                  isProduct={true}
+                />
+              ))
+            : recipeList?.map((product) => (
+                <RecommendedMenu
+                  key={product.id}
+                  id={product.id}
+                  url={product.image}
+                  title={product.menu}
+                  price={formatPrice(product.price)}
+                  brand={product.companyName}
+                  isProduct={false}
+                />
+              ))}
         </_.List>
       </_.Content>
     </_.Layout>

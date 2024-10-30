@@ -3,7 +3,7 @@ import * as _ from "./style";
 import { useNavigate } from "react-router-dom";
 import RightArrow from "../../assets/RightArrow";
 
-const RecommendedMenu = ({ id, url, title, price, brand }) => {
+const RecommendedMenu = ({ isProduct, id, url, title, price, brand }) => {
   const navigate = useNavigate();
   return (
     <_.Layout>
@@ -17,7 +17,11 @@ const RecommendedMenu = ({ id, url, title, price, brand }) => {
         <_.Right>
           <_.Detail
             onClick={() => {
-              navigate(`/menu-detail/${id}`);
+              if (isProduct) {
+                navigate(`/menu-detail/${id}`);
+              } else {
+                navigate(`/recipe-detail/${id}`);
+              }
             }}
           >
             자세히 보기 <RightArrow />

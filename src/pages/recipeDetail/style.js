@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: max-content;
   display: flex;
   flex-direction: column;
-  margin-bottom: 200px;
+  padding-bottom: 125px;
 `;
 
 export const Header = styled.header`
@@ -16,7 +16,7 @@ export const Header = styled.header`
 
 export const Image = styled.img`
   width: 100%;
-  height: 430px;
+  height: 350px;
   object-fit: cover;
 `;
 
@@ -174,7 +174,7 @@ export const RecipeBox = styled.div`
   background: #f3f3f3;
 `;
 
-export const Recipe = styled.li`
+export const Recipe = styled.p`
   line-height: 200%;
   width: 100%;
   color: #000;
@@ -182,5 +182,4 @@ export const Recipe = styled.li`
   font-size: 16px;
   font-style: normal;
   font-weight: 500;
-  margin-left: 20px;
 `;
