@@ -45,6 +45,15 @@ const MenuDetail = () => {
       </_.Info>
       <_.AlertList>
         <_.Alert>
+          <_.Text>메뉴 소개</_.Text>
+          <_.IntroduceBox>
+            <_.Introduce>
+              두툼한 소고기 패티의 깊은 풍미가 입안 가득 느껴지는, 한층 더
+              특별한 햄버거를 만나보세요!
+            </_.Introduce>
+          </_.IntroduceBox>
+        </_.Alert>
+        <_.Alert>
           <_.Text>알레르기 정보</_.Text>
           <_.TagList>
             {allergy?.map((item, index) => (

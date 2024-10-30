@@ -165,3 +165,21 @@ export const Button = styled.div`
   font-style: normal;
   font-weight: 600;
 `;
+
+export const IntroduceBox = styled.div`
+  width: 100%;
+  height: max-content;
+  padding: 25px;
+  border-radius: 6px;
+  background: #f3f3f3;
+`;
+
+export const Introduce = styled.p`
+  line-height: 200%;
+  width: 100%;
+  color: #000;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+`;
