@@ -1,30 +1,21 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import * as _ from "./style";
 
-const SpicyModal = ({ onClose }) => {
+const SpicyModal = ({ onClose, onPreferenceChange }) => {
   const [preference, setPreference] = useState(null);
-  const modalRef = useRef();
 
   const handlePreference = (type) => {
     setPreference(type);
+    onPreferenceChange(type);
   };
 
   const handleReset = () => {
     setPreference(null);
+    onPreferenceChange(null);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [onClose]);
-
   return (
-    <_.Layout ref={modalRef}>
+    <_.Layout>
       <_.Title>오늘의 음식 선호를 선택해 주세요</_.Title>
       <_.ButtonWrapper>
         <_.PreferenceButton

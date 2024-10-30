@@ -1,16 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
 import * as _ from "./style";
 
-const SpicyModal = ({ onClose }) => {
+const TempModal = ({ onClose, onPreferenceChange }) => {
   const [preference, setPreference] = useState(null);
   const modalRef = useRef();
 
   const handlePreference = (type) => {
     setPreference(type);
+    onPreferenceChange(type);
   };
 
   const handleReset = () => {
     setPreference(null);
+    onPreferenceChange(null);
   };
 
   useEffect(() => {
@@ -48,4 +50,4 @@ const SpicyModal = ({ onClose }) => {
   );
 };
 
-export default SpicyModal;
+export default TempModal;

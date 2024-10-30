@@ -9,6 +9,8 @@ const Recipe = () => {
   const [selectedTab, setSelectedTab] = useState(1);
   const [isSpicyModalOpen, setIsSpicyModalOpen] = useState(false);
   const [isTempModalOpen, setIsTempModalOpen] = useState(false);
+  const [spicyPreference, setSpicyPreference] = useState(null);
+  const [tempPreference, setTempPreference] = useState(null);
 
   const handleTap = (index) => {
     setSelectedTab(index);
@@ -31,8 +33,18 @@ const Recipe = () => {
         <_.Header_Title>디저트</_.Header_Title>
       </_.Header>
       <_.CategoryList>
-        <_.Category onClick={openSpicyModal}>맵기</_.Category>
-        <_.Category onClick={openTempModal}>온도</_.Category>
+        <_.Category
+          onClick={openSpicyModal}
+          isSelected={spicyPreference !== null}
+        >
+          맵기
+        </_.Category>
+        <_.Category
+          onClick={openTempModal}
+          isSelected={tempPreference !== null}
+        >
+          온도
+        </_.Category>
       </_.CategoryList>
       <_.Taps>
         <_.Tap isSelected={selectedTab === 1} onClick={() => handleTap(1)}>
@@ -49,10 +61,16 @@ const Recipe = () => {
         <SaleMenu />
       </_.List>
       {isSpicyModalOpen && (
-        <SpicyModal onClose={() => setIsSpicyModalOpen(false)} />
+        <SpicyModal
+          onClose={() => setIsSpicyModalOpen(false)}
+          onPreferenceChange={(type) => setSpicyPreference(type)}
+        />
       )}
       {isTempModalOpen && (
-        <TempModal onClose={() => setIsTempModalOpen(false)} />
+        <TempModal
+          onClose={() => setIsTempModalOpen(false)}
+          onPreferenceChange={(type) => setTempPreference(type)}
+        />
       )}
     </_.Layout>
   );

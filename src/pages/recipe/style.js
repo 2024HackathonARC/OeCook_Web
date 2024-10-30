@@ -34,10 +34,10 @@ export const CategoryList = styled.div`
 
 export const Category = styled.div`
   border-radius: 10px;
-  border: 1px solid #a7a7a7;
+  border: 1px solid ${(props) => (props.isSelected ? "#e54235" : "#a7a7a7")};
   background: #fff;
   padding: 3px 22px;
-  color: #a7a7a7;
+  color: ${(props) => (props.isSelected ? "#e54235" : "#a7a7a7")};
   text-align: center;
   font-family: Pretendard;
   font-size: 14px;
