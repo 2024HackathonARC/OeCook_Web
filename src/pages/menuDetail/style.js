@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Layout = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: max-content;
   display: flex;
   flex-direction: column;
   padding-bottom: 125px;
@@ -16,7 +16,7 @@ export const Header = styled.header`
 
 export const Image = styled.img`
   width: 100%;
-  height: 430px;
+  height: 350px;
   object-fit: cover;
 `;
 
@@ -32,7 +32,7 @@ export const Company = styled.p`
   font-family: Pretendard;
   font-size: 18px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
   line-height: normal;
 `;
 
@@ -156,7 +156,7 @@ export const Button = styled.div`
   text-align: center;
   border-radius: 6px;
   width: 50%;
-  padding: 14px 20px;
+  padding: 14px 16px;
   border: 1px solid ${(props) => (props.isRed ? "#e54235" : "#bdbdbd")};
   background-color: ${(props) => (props.isRed ? "#e54235" : "none")};
   color: ${(props) => (props.isRed ? "#e9e9e9" : "#909090")};

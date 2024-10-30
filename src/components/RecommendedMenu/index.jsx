@@ -1,8 +1,10 @@
 import React from "react";
 import * as _ from "./style";
+import { useNavigate } from "react-router-dom";
 import RightArrow from "../../assets/RightArrow";
 
-const RecommendedMenu = ({ url, title, price, brand }) => {
+const RecommendedMenu = ({ id, url, title, price, brand }) => {
+  const navigate = useNavigate();
   return (
     <_.Layout>
       <_.Image src={url} alt="메뉴 이미지" />
@@ -13,7 +15,11 @@ const RecommendedMenu = ({ url, title, price, brand }) => {
           <_.Brand>{brand}</_.Brand>
         </_.Left>
         <_.Right>
-          <_.Detail>
+          <_.Detail
+            onClick={() => {
+              navigate(`/menu-detail/${id}`);
+            }}
+          >
             자세히 보기 <RightArrow />
           </_.Detail>
         </_.Right>

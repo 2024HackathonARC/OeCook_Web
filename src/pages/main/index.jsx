@@ -11,10 +11,7 @@ import RecommendedMenu from "../../components/RecommendedMenu";
 import Header from "../../components/Header";
 import { Product_Read } from "../../lib/apis/Product";
 import { User_Read } from "../../lib/apis/User";
-
-const formatPrice = (price) => {
-  return `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`;
-};
+import { formatPrice } from "../../lib/utils/formatPrice";
 
 const Main = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -98,6 +95,7 @@ const Main = () => {
           {productList.map((product) => (
             <RecommendedMenu
               key={product.id}
+              id={product.id}
               url={product.image}
               title={product.menu}
               price={formatPrice(product.price)}
