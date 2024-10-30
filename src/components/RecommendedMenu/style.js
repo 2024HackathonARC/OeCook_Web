@@ -4,6 +4,7 @@ export const Layout = styled.div`
   display: flex;
   border-radius: 6px;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.07);
+  position: relative;
 `;
 
 export const Image = styled.img`
@@ -52,8 +53,9 @@ export const Brand = styled.p`
 `;
 
 export const Right = styled.div`
-  display: flex;
-  align-self: flex-end;
+  position: absolute;
+  bottom: 12px;
+  right: 9px;
 `;
 
 export const Detail = styled.p`
@@ -64,4 +66,6 @@ export const Detail = styled.p`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  display: flex;
+  align-items: center;
 `;

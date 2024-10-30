@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as _ from "./style";
 import CategoryBar from "../../components/CategoryBar";
 import Burger from "../../assets/Burger.webp";
@@ -9,10 +9,37 @@ import { Carousel } from "react-responsive-carousel";
 import OeCook from "../../assets/OeCook";
 import RecommendedMenu from "../../components/RecommendedMenu";
 import Header from "../../components/Header";
+import { Product_Read } from "../../lib/apis/Product";
+import { User_Read } from "../../lib/apis/User";
+
+const formatPrice = (price) => {
+  return `${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원`;
+};
 
 const Main = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedTab, setSelectedTab] = useState(1);
+  const [productList, setProductList] = useState([]);
+  const [name, setName] = useState("");
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await Product_Read();
+        setProductList(response);
+      } catch (error) {
+        console.error("에러:", error);
+      }
+
+      try {
+        const response = await User_Read();
+        setName(response.nickname);
+      } catch (error) {
+        console.error("에러:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   const handleTap = (index) => {
     setSelectedTab(index);
@@ -57,7 +84,7 @@ const Main = () => {
         </_.CustomCarousel>
         <_.Explain>
           <OeCook />
-          에서 000님께 추천드려요!
+          에서 {name}님께 추천드려요!
         </_.Explain>
         <_.Taps>
           <_.Tap isSelected={selectedTab === 1} onClick={() => handleTap(1)}>
@@ -68,54 +95,15 @@ const Main = () => {
           </_.Tap>
         </_.Taps>
         <_.List>
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
-          <RecommendedMenu
-            url={Coffee}
-            title="커피커피"
-            price="3,478원"
-            brand="빚은"
-          />
+          {productList.map((product) => (
+            <RecommendedMenu
+              key={product.id}
+              url={product.image}
+              title={product.menu}
+              price={formatPrice(product.price)}
+              brand={product.companyName}
+            />
+          ))}
         </_.List>
       </_.Content>
     </_.Layout>
