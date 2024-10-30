@@ -9,7 +9,7 @@ export const CategoryList = styled.div`
   width: 100%;
   justify-content: center;
   display: flex;
-  gap: 20px;
+  gap: 5px;
   padding: 20px 10px;
 `;
 
