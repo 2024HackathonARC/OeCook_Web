@@ -31,3 +31,14 @@ export const Recipe_Read = async () => {
   });
   return response.data;
 };
+
+export const Product_ReadByCategory = async (category) => {
+  const response = await axios.post(`${BASE_URL}/products/category`, {
+    headers: {
+      "Content-Type": `application/json`,
+      "ngrok-skip-browser-warning": "69420",
+    },
+    category: category,
+  });
+  return response.data;
+};

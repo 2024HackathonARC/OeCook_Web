@@ -16,7 +16,7 @@ export const Category = styled.div`
 
 export const Icon = styled.div`
   padding: 12px;
-  border: 1px solid #e9e9e9;
+  border: 1px solid ${(props) => (props.isSelected ? "#e54235" : "#e9e9e9")};
   border-radius: 150px;
 `;
 

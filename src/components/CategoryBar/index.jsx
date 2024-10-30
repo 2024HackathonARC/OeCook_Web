@@ -1,37 +1,31 @@
 import React from "react";
 import * as _ from "./style";
 import Bakery from "../../assets/Category/Bakery";
-import Dessert from "../../assets/Category/Dessert";
 import Meal from "../../assets/Category/Meal.png";
-import Coffee from "../../assets/Category/Coffee.png";
+import Korean from "../../assets/Category/Korean.png";
+import Cake from "../../assets/Category/Cake.png";
 
-const CategoryBar = () => {
+const CategoryBar = ({ selectedCategory, onCategorySelect }) => {
+  const categories = [
+    { name: "베이커리", icon: <Bakery /> },
+    { name: "디저트/음료", icon: <img src={Cake} alt="디저트/음료" /> },
+    { name: "외식/다이닝", icon: <img src={Meal} alt="외식/다이닝" /> },
+    { name: "한식", icon: <img src={Korean} alt="한식" /> },
+  ];
+
   return (
     <_.Layout>
-      <_.Category>
-        <_.Icon>
-          <Bakery />
-        </_.Icon>
-        <_.Name>베이커리</_.Name>
-      </_.Category>
-      <_.Category>
-        <_.Icon>
-          <Dessert />
-        </_.Icon>
-        <_.Name>디저트</_.Name>
-      </_.Category>
-      <_.Category>
-        <_.Icon>
-          <img src={Meal} alt="외식/다이닝" />
-        </_.Icon>
-        <_.Name>외식/다이닝</_.Name>
-      </_.Category>
-      <_.Category>
-        <_.Icon>
-          <img src={Coffee} alt="커피/음료" />
-        </_.Icon>
-        <_.Name>커피/음료</_.Name>
-      </_.Category>
+      {categories.map((category) => (
+        <_.Category
+          key={category.name}
+          onClick={() => onCategorySelect(category.name)}
+        >
+          <_.Icon isSelected={selectedCategory === category.name}>
+            {category.icon}
+          </_.Icon>
+          <_.Name>{category.name}</_.Name>
+        </_.Category>
+      ))}
     </_.Layout>
   );
 };
