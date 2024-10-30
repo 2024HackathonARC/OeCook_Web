@@ -39,7 +39,6 @@ const Main = () => {
           const response = await Recipe_Read();
           setRecipeList(response);
         }
-        console.log(recipeList);
       } catch (error) {
         console.error("에러:", error);
       }
@@ -52,7 +51,7 @@ const Main = () => {
       }
     };
     fetchProducts();
-  }, [selectedTab, selectedCategory, recipeList]);
+  }, [selectedTab, selectedCategory]);
 
   const handleTap = (index) => {
     setSelectedTab(index);
