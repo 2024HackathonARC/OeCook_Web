@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-const ScreenMap = ({ keyword }) => {
+const ScreenMap = ({ keyword, onMount }) => {
   useEffect(() => {
     const loadKakaoMap = () => {
       const script = document.createElement("script");
@@ -23,7 +23,7 @@ const ScreenMap = ({ keyword }) => {
           keyword,
           (data, status) => {
             if (status === kakao.maps.services.Status.OK) {
-              const results = data.slice(0, 3);
+              const results = data.slice(0, 1);
 
               results.forEach((store) => {
                 const markerPosition = new kakao.maps.LatLng(store.y, store.x);
@@ -36,6 +36,7 @@ const ScreenMap = ({ keyword }) => {
                 const infoWindow = new kakao.maps.InfoWindow({
                   content: `<div style="padding:5px;">${store.place_name}</div>`,
                 });
+                onMount(store.address_name);
 
                 kakao.maps.event.addListener(marker, "click", () => {
                   infoWindow.open(map, marker);
@@ -59,7 +60,7 @@ const ScreenMap = ({ keyword }) => {
 
     loadKakaoMap();
   }, [keyword]);
-  return <div id="map" style={{ width: "100vw", height: "100vh" }}></div>;
+  return <div id="map" style={{ width: "100vw", height: "400px" }}></div>;
 };
 
 export default ScreenMap;
