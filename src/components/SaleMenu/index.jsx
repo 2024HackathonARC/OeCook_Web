@@ -1,9 +1,19 @@
 import React from "react";
 import * as _ from "./style";
+import { useNavigate } from "react-router-dom";
 
-const SaleMenu = ({ image, title, price, company }) => {
+const SaleMenu = ({ id, isProduct, image, title, price, company }) => {
+  const navigate = useNavigate();
   return (
-    <_.Layout>
+    <_.Layout
+      onClick={() => {
+        if (isProduct) {
+          navigate(`/menu-detail/${id}`);
+        } else {
+          navigate(`/recipe-detail/${id}`);
+        }
+      }}
+    >
       <_.Image src={image} />
       <_.Title>{title}</_.Title>
       <_.Info>

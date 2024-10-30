@@ -99,19 +99,23 @@ const Recipe = () => {
           ? productList.map((product, index) => (
               <SaleMenu
                 key={index}
+                id={product.id}
                 image={product.image}
                 title={product.menu}
                 price={formatPrice(product.price)}
                 company={product.companyName}
+                isProduct={true}
               />
             ))
           : recipeList.map((product, index) => (
               <SaleMenu
                 key={index}
+                id={product.id}
                 image={product.image}
                 title={product.menu}
                 price={formatPrice(product.price)}
                 company={product.companyName}
+                isProduct={false}
               />
             ))}
       </_.List>

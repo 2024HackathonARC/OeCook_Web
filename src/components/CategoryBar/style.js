@@ -15,7 +15,12 @@ export const Category = styled.div`
 `;
 
 export const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 12px;
+  width: 60px;
+  height: 60px;
   border: 1px solid ${(props) => (props.isSelected ? "#e54235" : "#e9e9e9")};
   border-radius: 150px;
 `;
