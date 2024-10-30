@@ -12,7 +12,7 @@ export const Image = styled.img`
   width: 85px;
   height: 94.5px;
   min-height: 94.5px;
-  object-fit: cover;
+  object-fit: contain;
 `;
 
 export const Content = styled.div`

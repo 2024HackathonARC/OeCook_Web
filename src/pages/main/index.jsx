@@ -19,6 +19,7 @@ const Main = () => {
   const [productList, setProductList] = useState([]);
   const [recipeList, setRecipeList] = useState([]);
   const [name, setName] = useState("");
+  const [isEnglish, setIsEnglish] = useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -48,14 +49,32 @@ const Main = () => {
     setSelectedTab(index);
   };
 
+  const toggleLanguage = () => {
+    setIsEnglish((prev) => !prev);
+  };
+
   const imageData = [
-    { label: "판매 1위, 쉐이크쉑 꿀조합 대공개!", alt: "image1", url: Burger },
     {
-      label: "패밀리 사이즈 주문 시\n“싱글레귤러” 무료 증정!",
+      label: isEnglish
+        ? "Top Sale, Best Burger Combo!"
+        : "판매 1위, 쉐이크쉑 꿀조합 대공개!",
+      alt: "image1",
+      url: Burger,
+    },
+    {
+      label: isEnglish
+        ? "Free Regular Single on Family Size Order!"
+        : "패밀리 사이즈 주문 시\n“싱글레귤러” 무료 증정!",
       alt: "image2",
       url: IceCream,
     },
-    { label: "던킨은 “OOO”이랑 잘 어울린대!", alt: "image3", url: Coffee },
+    {
+      label: isEnglish
+        ? "Dunkin says it goes well with OOO!"
+        : "던킨은 “OOO”이랑 잘 어울린대!",
+      alt: "image3",
+      url: Coffee,
+    },
   ];
 
   const handleChange = (index) => setCurrentIndex(index);
@@ -70,9 +89,14 @@ const Main = () => {
 
   return (
     <_.Layout>
-      <Header />
+      <Header isEnglish={isEnglish} />
+      <div style={{ display: "flex", justifyContent: "end" }}>
+        <_.Language onClick={toggleLanguage}>
+          {isEnglish ? "한국어" : "English"}
+        </_.Language>
+      </div>
       <_.Content>
-        <CategoryBar />
+        <CategoryBar isEnglish={isEnglish} selectedCategory={selectedTab} />
         <_.CustomCarousel>
           <Carousel
             showArrows={false}
@@ -87,14 +111,16 @@ const Main = () => {
         </_.CustomCarousel>
         <_.Explain>
           <OeCook />
-          에서 {name}님께 추천드려요!
+          {isEnglish
+            ? ` recommended for you, ${name}!`
+            : `에서 ${name}님께 추천드려요!`}
         </_.Explain>
         <_.Taps>
           <_.Tap isSelected={selectedTab === 1} onClick={() => handleTap(1)}>
-            추천 메뉴
+            {isEnglish ? "Recommended Menu" : "추천 메뉴"}
           </_.Tap>
           <_.Tap isSelected={selectedTab === 2} onClick={() => handleTap(2)}>
-            추천 레시피
+            {isEnglish ? "Recommended Recipes" : "추천 레시피"}
           </_.Tap>
         </_.Taps>
         <_.List>

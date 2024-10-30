@@ -25,15 +25,12 @@ const BrandDetail = () => {
     }
   });
 
-  console.log(productList);
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         if (selectedTab === 1) {
           const response = await Company_Detail_Read(params.id);
           setInfo(response);
-          console.log(response);
         }
       } catch (error) {
         console.error("에러:", error);

@@ -6,13 +6,22 @@ import Korean from "../../assets/Category/Korean.png";
 import Cake from "../../assets/Category/Cake.png";
 import { useNavigate } from "react-router-dom";
 
-const CategoryBar = ({ selectedCategory, onCategorySelect }) => {
+const CategoryBar = ({ selectedCategory, isEnglish }) => {
   const navigate = useNavigate();
   const categories = [
-    { name: "베이커리", icon: <Bakery /> },
-    { name: "디저트/음료", icon: <img src={Cake} alt="디저트/음료" /> },
-    { name: "외식/다이닝", icon: <img src={Meal} alt="외식/다이닝" /> },
-    { name: "한식", icon: <img src={Korean} alt="한식" /> },
+    { name: isEnglish ? "Bakery" : "베이커리", icon: <Bakery /> },
+    {
+      name: isEnglish ? "Dessert/Beverage" : "디저트/음료",
+      icon: <img src={Cake} alt="디저트/음료" />,
+    },
+    {
+      name: isEnglish ? "Dining Out" : "외식/다이닝",
+      icon: <img src={Meal} alt="외식/다이닝" />,
+    },
+    {
+      name: isEnglish ? "Korean" : "한식",
+      icon: <img src={Korean} alt="한식" />,
+    },
   ];
 
   return (

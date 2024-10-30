@@ -13,6 +13,14 @@ export const Header = styled.header`
   padding: 12px 24px;
 `;
 
+export const Language = styled.button`
+  padding: 6px 12px;
+  margin-right: 20px;
+  color: #e54235;
+  border: 1px solid #e54235;
+  background-color: #fff;
+`;
+
 export const Content = styled.div`
   padding: 4px 0;
 `;
@@ -80,6 +88,7 @@ export const Tap = styled.div`
   color: ${(props) => (props.isSelected ? "#fff" : "#000")};
   background: ${(props) => (props.isSelected ? "#e54245" : "#fff")};
   box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.1);
+  text-align: center;
 `;
 
 export const List = styled.div`

@@ -18,3 +18,9 @@ export const Here = styled.p`
   line-height: normal;
   padding: 30px 25px;
 `;
+
+export const Header = styled.header`
+  position: relative;
+  display: flex;
+  padding: 12px 24px;
+`;
