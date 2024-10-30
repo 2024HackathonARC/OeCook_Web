@@ -5,7 +5,10 @@ import SaleMenu from "../../components/SaleMenu";
 import SpicyModal from "../../components/Modals/SpicyModal";
 import TempModal from "../../components/Modals/TempModal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Product_ReadByCategory } from "../../lib/apis/Product";
+import {
+  Product_ReadByCategory,
+  Recipe_ReadByCategory,
+} from "../../lib/apis/Product";
 import { formatPrice } from "../../lib/utils/formatPrice";
 
 const Recipe = () => {
@@ -17,6 +20,7 @@ const Recipe = () => {
   const location = useLocation();
   const category = location.state?.category;
   const [productList, setProductList] = useState([]);
+  const [recipeList, setRecipeList] = useState([]);
 
   const handleTap = (index) => {
     setSelectedTab(index);
@@ -43,8 +47,10 @@ const Recipe = () => {
           );
           setProductList(response);
         } else if (selectedTab === 2) {
-          // const response = await Recipe_Read();
-          // setRecipeList(response);
+          const response = await Recipe_ReadByCategory(
+            category === "베이커리" ? "빵" : category
+          );
+          setRecipeList(response);
         }
       } catch (error) {
         console.error("에러:", error);
@@ -89,15 +95,25 @@ const Recipe = () => {
         </_.Tap>
       </_.Taps>
       <_.List>
-        {productList.map((product, index) => (
-          <SaleMenu
-            key={index}
-            image={product.image}
-            title={product.menu}
-            price={formatPrice(product.price)}
-            company={product.companyName}
-          />
-        ))}
+        {selectedTab === 1
+          ? productList.map((product, index) => (
+              <SaleMenu
+                key={index}
+                image={product.image}
+                title={product.menu}
+                price={formatPrice(product.price)}
+                company={product.companyName}
+              />
+            ))
+          : recipeList.map((product, index) => (
+              <SaleMenu
+                key={index}
+                image={product.image}
+                title={product.menu}
+                price={formatPrice(product.price)}
+                company={product.companyName}
+              />
+            ))}
       </_.List>
       {isSpicyModalOpen && (
         <SpicyModal
