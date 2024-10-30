@@ -14,7 +14,18 @@ const BrandDetail = () => {
     setSelectedTab(index);
   };
   const [info, setInfo] = useState();
-  const productList = info?.products;
+  const productList = [];
+  const recipeList = [];
+
+  info?.products.forEach((product) => {
+    if (product.isProduct) {
+      productList.push(product);
+    } else {
+      recipeList.push(product);
+    }
+  });
+
+  console.log(productList);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -60,17 +71,29 @@ const BrandDetail = () => {
         </_.Tap>
       </_.Taps>
       <_.List>
-        {productList?.map((product) => (
-          <RecommendedMenu
-            key={product.id}
-            id={product.id}
-            url={product.image}
-            title={product.menu}
-            price={formatPrice(product.price)}
-            brand={product.companyName}
-            isProduct={true}
-          />
-        ))}
+        {selectedTab === 1
+          ? productList?.map((product) => (
+              <RecommendedMenu
+                key={product.id}
+                id={product.id}
+                url={product.image}
+                title={product.menu}
+                price={formatPrice(product.price)}
+                brand={product.companyName}
+                isProduct={true}
+              />
+            ))
+          : recipeList?.map((product) => (
+              <RecommendedMenu
+                key={product.id}
+                id={product.id}
+                url={product.image}
+                title={product.menu}
+                price={formatPrice(product.price)}
+                brand={product.companyName}
+                isProduct={false}
+              />
+            ))}
       </_.List>
     </_.Layout>
   );
